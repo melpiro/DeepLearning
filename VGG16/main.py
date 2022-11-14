@@ -15,7 +15,7 @@ def run():
     img_size = 75
     x_train, x_test, y_train, y_test = read_dataset(img_size=img_size, useLabels=labels)
 
-    base_model = tf.keras.applications.InceptionV3(
+    base_model = tf.keras.applications.VGG16(
         weights='imagenet',  # Load weights pre-trained on ImageNet.
         input_shape=(img_size, img_size, 3),
         include_top=False

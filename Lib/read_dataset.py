@@ -4,6 +4,20 @@ import pandas as pd
 from keras.utils import load_img, img_to_array
 
 
+def flipImg(img):
+    return np.fliplr(img)
+
+def rotate90(img):
+    return np.rot90(img)
+
+def rotate180(img):
+    return np.rot90(img, k=2)
+
+def rotate270(img):
+    return np.rot90(img, k=3)
+    
+
+
 def read_dataset(img_size= 64, useLabels = ["Male"]):
 
 
@@ -18,6 +32,17 @@ def read_dataset(img_size= 64, useLabels = ["Male"]):
         path = dataset['image_id'][i]
         img = load_img('./Dataset/img_align_celeba_small/' + path, target_size=(img_size, img_size))
         img = img_to_array(img)/255.0
+
+        n = np.random.randint(0, 5)
+        if n == 1:
+            img = flipImg(img)
+        elif n == 2:
+            img = rotate90(img)
+        elif n == 3:
+            img = rotate180(img)
+        elif n == 4:
+            img = rotate270(img)
+            
 
         images[i] = img
         labels[i] = dataset.loc[i, useLabels]
