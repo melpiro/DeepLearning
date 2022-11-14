@@ -1,4 +1,7 @@
 tmp/
 scp.py
 .vscode/
+sketch.md
+.venv
+venv/
 **/__pycache__/
