@@ -1,0 +1,4 @@
+tmp/
+scp.py
+.vscode/
+**/__pycache__/
