@@ -5,7 +5,6 @@ import pandas as pd
 
 from Lib.read_dataset import read_dataset
 from Lib.benchmark import benchmarkit
-from Lib.eval import evaluate_output
 
 
 @benchmarkit
@@ -38,7 +37,7 @@ def run():
     keras.utils.plot_model(model, to_file='model.png', show_shapes=True)
 
     # train model
-    model.fit(x_train, y_train, epochs=2, batch_size=32, validation_data=(x_test, y_test))
+    model.fit(x_train, y_train, epochs=10, batch_size=32, validation_data=(x_test, y_test))
 
     
     # plot some images
@@ -54,7 +53,6 @@ def run():
 
             preds = model.predict(x_test[i*n+j].reshape(1, img_size, img_size, 3))
             true = y_test[i*n+j]
-            evaluate_output(labels, true, preds)
 
             title = ''
             t = []
