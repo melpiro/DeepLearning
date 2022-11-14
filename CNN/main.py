@@ -8,25 +8,29 @@ from Lib.read_dataset import read_dataset
 
 
 def run():
-    labels = ["Male", "Smiling", "Young"]
-    labels_opposite = ["Femal", "Not Smiling", "Old"]
+
+
+    labels = ["Male"]
+    labels_opposite = ["Femal"]
     img_size = 64
     x_train, x_test, y_train, y_test = read_dataset(img_size=img_size, useLabels=labels)
 
     model = keras.Sequential([
         layers.Conv2D(32, (3, 3), activation='relu', input_shape=(img_size, img_size, 3)),
         layers.MaxPooling2D((2, 2)),
+        layers.Conv2D(32, (3, 3), activation='relu'),
+        layers.MaxPooling2D((2, 2)),
         layers.Conv2D(64, (3, 3), activation='relu'),
         layers.MaxPooling2D((2, 2)),
         layers.Conv2D(64, (3, 3), activation='relu'),
         layers.Flatten(),
         layers.Dense(64, activation='relu'),
-        layers.Dense(y_train.shape[1], activation='softmax')
+        layers.Dense(y_train.shape[1], activation='sigmoid')
     ])
 
-    adam = keras.optimizers.Adam(lr=0.001)
+    adam = keras.optimizers.Adam(lr=0.0001)
     model.compile(optimizer=adam,
-                    loss="mse",
+                    loss="binary_crossentropy",
                     metrics=['accuracy'])
 
     # plot model
@@ -38,7 +42,7 @@ def run():
     
     # plot some images
     import matplotlib.pyplot as plt
-    n = 2
+    n = 4
     fig, ax = plt.subplots(n, n, figsize=(10, 10))
     for i in range(n):
         for j in range(n):
