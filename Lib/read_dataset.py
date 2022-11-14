@@ -11,7 +11,7 @@ def read_dataset(img_size= 64, useLabels = ["Male"]):
     dataset = dataset[:11000]
 
 
-    images = np.zeros((len(dataset), img_size, img_size, 3), dtype=np.float16)
+    images = np.zeros((len(dataset), img_size, img_size, 3), dtype=np.float32)
     labels = np.zeros((len(dataset), len(useLabels)))
 
     for i in range(len(dataset)):
@@ -22,6 +22,7 @@ def read_dataset(img_size= 64, useLabels = ["Male"]):
         images[i] = img
         labels[i] = dataset.loc[i, useLabels]
 
+    labels = (labels + 1.0) / 2.0
 
     image_train = images[:10000]
     image_test = images[10000:]

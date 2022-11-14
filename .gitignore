@@ -8,3 +8,4 @@ venv/
 Dataset/
 .Dataset/
 **/__pycache__/
+run.py
