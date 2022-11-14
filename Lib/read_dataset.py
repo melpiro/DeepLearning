@@ -11,7 +11,7 @@ def read_dataset(img_size= 64, useLabels = ["Male"]):
     dataset = dataset[:11000]
 
 
-    images = np.zeros((len(dataset), img_size, img_size, 3), dtype=np.uint8)
+    images = np.zeros((len(dataset), img_size, img_size, 3), dtype=np.float16)
     labels = np.zeros((len(dataset), len(useLabels)))
 
     for i in range(len(dataset)):
