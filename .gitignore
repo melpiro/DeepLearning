@@ -9,3 +9,5 @@ Dataset/
 .Dataset/
 **/__pycache__/
 run.py
+model.png
+.model.png
