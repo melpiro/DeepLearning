@@ -4,4 +4,6 @@ scp.py
 sketch.md
 .venv
 venv/
+Dataset/
+.Dataset/
 **/__pycache__/
